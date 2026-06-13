@@ -3,25 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>შესვლა — პროექტის სახელი</title>
+  <title>პროფილი და აქტივობა | ფილმების სამყარო</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <main>
+  <header class="header" id="site-header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo" id="logo-anchor">
+        <span>🎬</span> ფილმების სამყარო
+      </a>
+      
+      <nav class="header__nav" aria-label="მთავარი ნავიგაცია" id="main-navigation">
+        <a href="index.html" class="header__link" id="nav-home">მთავარი</a>
+        <a href="saved.html" class="header__link" id="nav-saved">ჩემი სია</a>
+        <a href="login.html" class="header__link header__link--active" id="nav-profile">პროფილი & მიმოხილვები</a>
+      </nav>
+    </div>
+  </header>
 
-    <form id="login-form">
-      <!-- input type="text" ვალიდაციის ატრიბუტებით -->
-      <label for="name-input">შენი სახელი</label>
-      <input id="name-input" type="text" name="name" required minlength="2" autocomplete="name">
+  <main class="main-wrapper" id="main-content">
+    
+    <section class="intro-section" id="profile-intro" style="margin-bottom: 2rem;">
+      <h1 class="section-title" id="profile-page-title">
+        კინომოყვარულის პროფილი
+        <span class="section-title__subtitle" id="profile-page-subtitle">შეავსე შენი პროფილი, მართე შენი საყვარელი ჟანრები და დატოვე მიმოხილვები</span>
+      </h1>
+    </section>
 
-      <p id="login-error" hidden></p>
+    <div class="profile" id="profile-layout-container">
+      
+      <section class="profile-card" id="form-card-column">
+        <h2 style="font-size: 1.35rem; font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem;">
+          ⚙️ პროფილის პარამეტრები
+        </h2>
+        
+        <form class="profile-form" id="user-profile-setup-form">
+          
+          <div class="form-group" id="group-username">
+            <label for="profile-username" class="form-group__label">სრული სახელი / ფსევდონიმი *</label>
+            <input 
+              type="text" 
+              class="form-group__input" 
+              id="profile-username" 
+              placeholder="მაგ: გიორგი ბერიძე" 
+              required 
+              minlength="3"
+            >
+          </div>
 
-      <button type="submit">დაწყება →</button>
-    </form>
+          <div class="form-group" id="group-email">
+            <label for="profile-email" class="form-group__label">ელ-ფოსტის მისამართი *</label>
+            <input 
+              type="email" 
+              class="form-group__input" 
+              id="profile-email" 
+              placeholder="giorgi@example.com" 
+              required
+            >
+          </div>
+
+          <div class="form-group" id="group-genre-select">
+            <label for="profile-fav-genre" class="form-group__label">საყვარელი ფილმების კინო-ჟანრი</label>
+            <select class="form-group__select" id="profile-fav-genre">
+              <option value="ყველა">აირჩიეთ ჟანრი...</option>
+              <option value="Action">მძაფრსიუჟეტიანი (Action)</option>
+              <option value="Sci-Fi">სამეცნიერო ფანტასტიკა (Sci-Fi)</option>
+              <option value="Drama">დრამა (Drama)</option>
+              <option value="Adventure">სათავგადასავლო (Adventure)</option>
+              <option value="Crime">კრიმინალი (Crime)</option>
+              <option value="Animation">ანიმაცია (Animation)</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="group-radio-frequency">
+            <span class="form-group__label">ფილმების ყურების სიხშირე</span>
+            <div class="form-group__choice-list">
+              <label class="form-group__choice-item">
+                <input type="radio" name="watch_frequency" value="ყოველდღე" class="form-group__radio" checked>
+                <span>ყოველდღე</span>
+              </label>
+              <label class="form-group__choice-item">
+                <input type="radio" name="watch_frequency" value="კვირაში რამდენჯერმე" class="form-group__radio">
+                <span>კვირაში რამდენჯერმე</span>
+              </label>
+              <label class="form-group__choice-item">
+                <input type="radio" name="watch_frequency" value="მხოლოდ შაბათ-კვირას" class="form-group__radio">
+                <span>მხოლოდ შაბათ-კვირას</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="group-checkbox-newsletter">
+            <div class="form-group__choice-list">
+              <label class="form-group__choice-item">
+                <input type="checkbox" id="profile-newsletter-opt" class="form-group__checkbox" checked>
+                <span>გამოვიწერო განსაკუთრებული რეკომენდაციები ელ-ფოსტაზე</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group" id="group-textarea-about">
+            <label for="profile-bio-summary" class="form-group__label">მოკლე ინფორმაცია შენზე *</label>
+            <textarea 
+              class="form-group__textarea" 
+              id="profile-bio-summary" 
+              placeholder="გაგვიზიარე შენი კინო-გემოვნება..." 
+              required 
+              minlength="10"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn" id="button-save-profile">
+            <span>პროფილის შენახვა 💾</span>
+          </button>
+
+          <div class="form-feedback" id="profile-alert-box"></div>
+
+        </form>
+      </section>
+
+      <section class="profile-card" id="analytics-overview-column" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        
+        <div id="active-profile-card" style="background-color: var(--color-bg-input); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--color-border); display: none;">
+          <h3 id="rendered-username" style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.25rem;">მომხმარებელი</h3>
+          <p id="rendered-email" style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem;">ელ-ფოსტა</p>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+            <span class="modal__genre-tag" id="rendered-genre">საყვარელი ჟანრი: -</span>
+            <span class="modal__genre-tag" id="rendered-frequency" style="border-color: rgba(16, 185, 129, 0.4); color: var(--color-success);">ყურება: -</span>
+          </div>
+          
+          <p id="rendered-bio" style="font-size: 0.95rem; line-height: 1.5; color: var(--color-text-main); font-style: italic; border-top: 1px solid var(--color-border); padding-top: 0.85rem;">ბიოგრაფია...</p>
+        </div>
+
+        <div id="no-profile-yet-message">
+          <p style="color: var(--color-text-muted); text-align: center; padding: 2rem; border: 1px dashed var(--color-border); border-radius: var(--radius-md);">
+            🔒 პროფილი ჯერ არ არის შექმნილი. შეავსეთ ფორმა მარცხენა სვეტში მონაცემთა შესანახად!
+          </p>
+        </div>
+
+        <div>
+          <h2 style="font-size: 1.35rem; font-weight: 600; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+            <span>✍️ ბოლო შეფასებები & რეიტინგები</span>
+          </h2>
+          <div id="movie-reviews-list-container" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;"></div>
+        </div>
+
+      </section>
+
+    </div>
 
   </main>
 
-  <script type="module" src="js/login.js"></script>
+  <footer class="footer" id="site-footer">
+    <div class="footer__container">
+      <p class="footer__text" id="footer-copyright">
+        &copy; 2026 ფილმების სამყარო. ყველა უფლება დაცულია.
+      </p>
+    </div>
+  </footer>
+
+  <script type="module" src="js/login.js" id="login-script-entry"></script>
 </body>
 </html>
