@@ -3,50 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>პროექტის სახელი</title>
+  <title>ფილმების სამყარო | კინომოყვარულთა ვებ პორტალი</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header>
-    <nav>
-      <span class="nav__logo">პროექტის სახელი</span>
-      <div class="nav__links">
-        <a href="index.html">ძიება</a>
-        <a href="saved.html">შენახული</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">გასვლა</button>
-      </div>
-    </nav>
+  <header class="header" id="site-header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo" id="logo-anchor">
+        <span>🎬</span> ფილმების სამყარო
+      </a>
+      
+      <nav class="header__nav" aria-label="მთავარი ნავიგაცია" id="main-navigation">
+        <a href="index.html" class="header__link header__link--active" id="nav-home">მთავარი</a>
+        <a href="saved.html" class="header__link" id="nav-saved">ჩემი სია</a>
+        <a href="login.html" class="header__link" id="nav-profile">პროფილი & მიმოხილვები</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="main-wrapper" id="main-content">
+    
+    <section class="hero-section" id="intro-hero" style="margin-bottom: 2rem;">
+      <h1 class="section-title" id="page-primary-title">
+        ფილმების ძიება
+        <span class="section-title__subtitle" id="page-secondary-title">აღმოაჩინე და დაგეგმე შენი საყვარელი ფილმების კოლექცია ნებისმიერ დროს</span>
+      </h1>
+    </section>
 
-    <!-- საძიებო / ფილტრის ფორმა -->
-    <section>
-      <form id="search-form">
-        <!-- დაამატე input ველები აქ (სულ მცირე 3 განსხვავებული ტიპი) -->
-        <button type="submit">ძიება</button>
+    <section class="search-box" id="search-container">
+      <form class="search-form" id="movie-search-form" autocomplete="off">
+        <div class="search-form__field-group" id="input-container">
+          <span class="search-form__icon" id="search-magnifier-icon">🔍</span>
+          <input 
+            type="text" 
+            class="search-form__input" 
+            id="movie-keyword-input" 
+            placeholder="მოძებნე ფილმი დასახელებით..."
+            required
+            minlength="2"
+          >
+        </div>
+        <button type="submit" class="search-form__button" id="search-trigger-btn">
+          <span>ძიება</span>
+        </button>
       </form>
     </section>
 
-    <!-- ჩატვირთვის და შეცდომის მდგომარეობები -->
-    <p id="loading-msg" hidden>იტვირთება…</p>
-    <p id="error-msg" hidden></p>
+    <div class="demo-banner" id="fallback-notification" style="display: none;">
+      <span>💡</span> აპლიკაცია მუშაობს ლოკალურ დემო რეჟიმში. რეალური API-ს გასაღებად დაამატეთ OMDB_API_KEY.
+    </div>
 
-    <!-- დინამიურად შექმნილი ბარათები აქ განთავსდება -->
-    <section>
-      <div id="results-grid"></div>
+    <section class="movies-container" id="results-display-section">
+      
+      <div class="loading-indicator" id="search-spinner" style="display: none;">
+        <div class="loading-indicator__spinner" id="spinner-circle"></div>
+        <p id="spinner-caption">ფილმები იტვირთება, გთხოვთ დაელოდოთ...</p>
+      </div>
+
+      <div class="error-indicator" id="error-boundary-msg" style="display: none;">
+        <span class="error-indicator__icon" id="error-warning-icon" style="font-size: 2.5rem;">⚠️</span>
+        <h3 id="error-title-header">შეცდომა!</h3>
+        <p id="error-text-content">ფილმების ჩატვირთვისას მოხდა შეცდომა. გთხოვთ, სცადოთ მოგვიანებით.</p>
+      </div>
+
+      <div class="empty-indicator" id="empty-state-banner">
+        <span>🍿</span>
+        <h3>დაიწყეთ ძიება!</h3>
+        <p>შეიყვანეთ ფილმის დასახელება საძიებო ველში მის მოსაძებნად.</p>
+      </div>
+
+      <div class="movie-grid" id="movies-render-grid"></div>
+
     </section>
 
   </main>
 
-  <footer>
-    <!-- footer-ის შიგთავსი -->
+  <dialog class="modal" id="overlay-details-modal">
+    <div class="modal__card" id="details-card-body">
+      <button class="modal__close" id="close-modal-trigger" aria-label="დახურვა">✕</button>
+      <div class="modal__grid" id="modal-populated-grid"></div>
+    </div>
+  </dialog>
+
+  <footer class="footer" id="site-footer">
+    <div class="footer__container">
+      <p class="footer__text" id="footer-copyright">
+        &copy; 2026 ფილმების სამყარო. ყველა უფლება დაცულია.
+      </p>
+    </div>
   </footer>
 
-  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/main.js" id="main-script-entry"></script>
 </body>
 </html>
