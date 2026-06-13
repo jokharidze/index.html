@@ -3,39 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>შენახული — პროექტის სახელი</title>
+  <title>ჩემი სია | ფილმების სამყარო</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <header>
-    <nav>
-      <span class="nav__logo">პროექტის სახელი</span>
-      <div class="nav__links">
-        <a href="index.html">ძიება</a>
-        <a href="saved.html">შენახული</a>
-      </div>
-      <div class="nav__actions">
-        <span id="nav-user"></span>
-        <button id="logout-btn" type="button">გასვლა</button>
-      </div>
-    </nav>
+  <header class="header" id="site-header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo" id="logo-anchor">
+        <span>🎬</span> ფილმების სამყარო
+      </a>
+      
+      <nav class="header__nav" aria-label="მთავარი ნავიგაცია" id="main-navigation">
+        <a href="index.html" class="header__link" id="nav-home">მთავარი</a>
+        <a href="saved.html" class="header__link header__link--active" id="nav-saved">ჩემი სია</a>
+        <a href="login.html" class="header__link" id="nav-profile">პროფილი & მიმოხილვები</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="main-wrapper" id="main-content">
+    
+    <section class="saved-intro" id="watchlist-intro" style="margin-bottom: 2rem;">
+      <h1 class="section-title" id="watchlist-title">
+        კინო-კოლექცია
+        <span class="section-title__subtitle" id="watchlist-subtitle">შენ მიერ შენახული და მოსანიშნი ფილმების სია</span>
+      </h1>
+    </section>
 
-    <section>
-      <h2>შენახული ელემენტები</h2>
-      <p id="saved-empty" hidden>ჯერ არაფერია შენახული.</p>
-      <div id="saved-grid"></div>
+    <section class="watchlist-stats" id="stats-panel-section">
+      <div class="stat-item" id="stat-card-total">
+        <div class="stat-item__icon-box" id="stat-icon-total">🎞️</div>
+        <div>
+          <div class="stat-item__value" id="total-saved-indicator">0</div>
+          <div class="stat-item__label" id="total-saved-label">სულ სიაში</div>
+        </div>
+      </div>
+      
+      <div class="stat-item" id="stat-card-session">
+        <div class="stat-item__icon-box" id="stat-icon-session" style="background-color: rgba(16, 185, 129, 0.1); color: var(--color-success);">⚡</div>
+        <div>
+          <div class="stat-item__value" id="session-adds-indicator">0</div>
+          <div class="stat-item__label" id="session-adds-label">მიმდინარე სესიაზე დამატებული</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="watchlist-controls" id="list-controls-bar">
+      <button class="clear-btn" id="bulk-clear-watchlist" style="display: none;">
+        <span>🗑️</span> მთლიანი სიის გასუფთავება
+      </button>
+    </section>
+
+    <section class="movies-container" id="saved-results-section">
+      
+      <div class="empty-indicator" id="empty-watchlist-banner">
+        <span>🎬</span>
+        <h3>თქვენი სია ცარიელია</h3>
+        <p>გადადით მთავარ გვერდზე და დაამატეთ ფილმები თქვენს პირად სიასა და კოლექციაში.</p>
+        <a href="index.html" class="search-form__button" style="margin-top: 1rem; text-decoration: none; display: inline-flex; justify-content: center; align-items: center; height: 42px;">ფილმების ძებნა</a>
+      </div>
+
+      <div class="movie-grid" id="watchlist-movies-grid"></div>
+
     </section>
 
   </main>
 
-  <footer>
-    <!-- footer-ის შიგთავსი -->
+  <dialog class="modal" id="overlay-details-modal">
+    <div class="modal__card" id="details-card-body">
+      <button class="modal__close" id="close-modal-trigger" aria-label="დახურვა">✕</button>
+      
+      <div class="modal__grid" id="modal-populated-grid">
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="footer" id="site-footer">
+    <div class="footer__container">
+      <p class="footer__text" id="footer-copyright">
+        &copy; 2026 ფილმების სამყარო. ყველა უფლება დაცულია.
+      </p>
+    </div>
   </footer>
 
-  <script type="module" src="js/saved.js"></script>
+  <script type="module" src="js/saved.js" id="saved-script-entry"></script>
 </body>
 </html>
